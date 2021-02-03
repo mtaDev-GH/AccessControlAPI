@@ -47,7 +47,8 @@ public class UserUseCasesImpl implements UserUseCases {
 	
 	@Override
 	public Collection<Profile> getProfilesOfUser(Long id){	
-		return userRepository.getOne(id).getProfiles();
+//		return userRepository.getOne(id).getProfiles();
+		return userRepository.findById(id).get().getProfiles();
 	}
 
 }

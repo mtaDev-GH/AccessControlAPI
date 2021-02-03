@@ -17,7 +17,6 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="users") //We named it "users" because "User" is reserved in PostGres
-
 public class User implements Serializable {
 	
 	@Id 

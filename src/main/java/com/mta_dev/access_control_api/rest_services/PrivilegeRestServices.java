@@ -1,5 +1,6 @@
 package com.mta_dev.access_control_api.rest_services;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mta_dev.access_control_api.entities.Privilege;
+import com.mta_dev.access_control_api.entities.Profile;
 import com.mta_dev.access_control_api.use_cases.PrivilegeUseCases;
 
 @RestController
@@ -42,13 +44,11 @@ public class PrivilegeRestServices {
 	public void deletePrivilege(@PathVariable Long id) {
 		privilegeUseCases.deletePrivilege(id);
 	}
-	
-	//	"We cant do that like that because Privilege isnt the owner side in the many to many
-	//	relationship with Profile"
-	//  *****	
-	//	@RequestMapping(value="/privileges/{id}/profiles",method=RequestMethod.GET)
-	//	@ResponseBody
-	//	public Collection<Profile> getProfilesOfPrivilege(@PathVariable Long id) {
-	//		return privilegeUseCases.getProfilesOfPrivilege(id);
-	//	}
+		
+		@RequestMapping(value="/privileges/{id}/profiles",method=RequestMethod.GET)
+		@ResponseBody
+		public Collection<Profile> getProfilesOfPrivilege(@PathVariable Long id) {
+			return privilegeUseCases.getProfilesOfPrivilege(id);
+		}
+
 }

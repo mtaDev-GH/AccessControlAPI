@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mta_dev.access_control_api.entities.Privilege;
 import com.mta_dev.access_control_api.entities.Profile;
+import com.mta_dev.access_control_api.entities.User;
 import com.mta_dev.access_control_api.use_cases.ProfileUseCases;
 
 @RestController
@@ -51,14 +52,10 @@ public class ProfileRestServices {
 		return profileUseCases.getPrivilegesOfProfile(id);
 	}
 	
-	//	"We cant do that like that because Profile isnt the owner side in the many to many
-	//	relationship with User"
-	//	*****
-	//	@RequestMapping(value="/profiles/{id}/users",method=RequestMethod.GET)
-	//	@ResponseBody
-	//	public Collection<User> getUsersOfProfile(@PathVariable Long id) {
-	//		System.out.println("\n in the service \n");
-	//		return profileUseCases.getUsersOfProfile(id);
-	//	}
+	@RequestMapping(value="/profiles/{id}/users",method=RequestMethod.GET)
+	@ResponseBody
+	public Collection<User> getUsersOfProfile(@PathVariable Long id) {
+		return profileUseCases.getUsersOfProfile(id);
+	}
 
 }

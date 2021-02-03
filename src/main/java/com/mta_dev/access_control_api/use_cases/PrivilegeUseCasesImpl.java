@@ -1,5 +1,6 @@
 package com.mta_dev.access_control_api.use_cases;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.mta_dev.access_control_api.dao.PrivilegeRepository;
 import com.mta_dev.access_control_api.entities.Privilege;
+import com.mta_dev.access_control_api.entities.Profile;
 
 @Service
 public class PrivilegeUseCasesImpl implements PrivilegeUseCases {
@@ -36,12 +38,10 @@ public class PrivilegeUseCasesImpl implements PrivilegeUseCases {
 		
 	}
 
-	//	"We cant do that like that because Privilege isnt the owner side in the many to many
-	//	relationship with Profile"
-	//  *****
-	//	@Override
-	//	public Collection<Profile> getProfilesOfPrivilege(Long id) {
-	//		System.out.println("in PrivilegeMetier \n ");
-	//		return privilegeRepository.getOne(id).getProfiles();
-	//	}
+	@Override
+	public Collection<Profile> getProfilesOfPrivilege(Long id) {
+		System.out.println("in PrivilegeMetier \n ");
+		return privilegeRepository.findById(id).get().getProfiles();
+	}
+
 }
